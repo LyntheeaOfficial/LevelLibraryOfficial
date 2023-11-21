@@ -1,0 +1,423 @@
+WindowManager:
+
+    Opening:
+    LibraryMenu:
+    AskTheLibrarian:
+    ResearchSummary:
+    LearningCenter:
+    MoreAbtLL:
+    AboutUs:
+
+#:import Factory kivy.factory.Factory
+<MyPopup@Popup>:
+    auto_dismiss: False
+    size_hint: 0.6, 0.6
+    pos_hint: {'x':0.2, 'y':0.2}
+
+    title: "What is this?"
+    BoxLayout:
+        orientation: "vertical"
+
+        Label:
+            text: "The Level Library intends to adapt to the current state of Artificial Intelligence and expand on it. Currently, the uses of popular A.I. platforms is to be an alternative to google. These A.I. provide the user with quick answers to questions they may have. While this is good, popular A.I. fails to suffice the needs of more professional environments. Other pages of the Level Library assess this issue. However, we did not want to get rid of the already well known A.I. interface and its uses with the creation of our solution but rather make it a better tool for professional and scientific environments."
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+        Button:
+            text: "Close"
+            font_size: 24
+            size_hint: 1, 0.4
+            on_release: root.dismiss()
+
+<Opening>:
+    name: "opening"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "Welcome"
+            font_size: 32
+            size_hint: 1, 0.3
+            color: 0, 0, 0, 1
+
+        BoxLayout:
+            padding: 5
+            Image:
+                source: "Level Library Logo.png"
+
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1, 0.6
+            padding: 50
+
+            Button:
+                text: "Enter The Library"
+                background_color: (118/255, 165/255, 185/255, 1)
+                on_release:
+                    app.root.current = "menu"
+                    root.manager.transition.direction = "up"
+            Button:
+                text: "About Us"
+                on_release:
+                    app.root.current = "aboutus"
+                    root.manager.transition.direction = "up"
+
+<LibraryMenu>:
+    name: "menu"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 50, 10, 50, 10
+
+        Button:
+            text: "Ask The Librarian"
+            on_release:
+                app.root.current = "askthe"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Research Summary"
+            on_release:
+                app.root.current = "research"
+                root.manager.transition.direction = 'left'
+        Button:
+            text: "Learning Center"
+            on_release:
+                app.root.current = "learning"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "More About Level Library"
+            on_release:
+                app.root.current = "mall"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Back"
+            on_release:
+                app.root.current = "opening"
+                root.manager.transition.direction = "down"
+
+<AskTheLibrarian>:
+    name: "askthe"
+
+    BoxLayout:
+        orientation: "horizontal"
+        padding: 10, 30, 10, 30
+
+        Button:
+            size_hint: 0.2, 1
+            text: "<"
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
+        BoxLayout:
+            orientation: "vertical"
+
+            Label:
+                id: test2
+                text: "Responses will Appear Here"
+                color: 0, 0, 0, 1
+                size_hint: 1, 0.8
+                text_size: self.size
+                halign: 'center'
+                valign: 'top'
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: 1, 0.1
+                padding: 5, 0, 5, 0
+
+                TextInput:
+                    id: test
+                    text: "Ask me a question..."
+
+                Button:
+                    id: clear
+                    text: ">>"
+                    size_hint: 0.2, 1
+                    on_press: root.clear()
+
+        Button:
+            text: "!"
+            size_hint: 0.2, 1
+            on_release: Factory.MyPopup().open()
+
+
+<ResearchPopup@Popup>:
+    auto_dismiss: False
+    size_hint: 0.6, 0.6
+    pos_hint: {'x':0.2, 'y':0.2}
+
+    title: "What is this?"
+    BoxLayout:
+        orientation: "vertical"
+
+        Label:
+            text: "The most prominent feature of the Level Library is its ability to summarize mounds of research into easier to consume chunks so rural areas can quickly access information, develop solutions, and implement revolutionary changes so all human life can be as close to being on the same page as possible. In order to evolve as a species, humans must be on the same playing field from every point on the planet."
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+        Button:
+            text: "Close"
+            font_size: 24
+            size_hint: 1, 0.4
+            on_release: root.dismiss()
+
+<ResearchSummary>:
+    name: "research"
+
+    BoxLayout:
+        orientation: "horizontal"
+        padding: 10, 30, 10, 30
+
+        Button:
+            size_hint: 0.2, 1
+            text: "<"
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
+        BoxLayout:
+            orientation: "vertical"
+
+            Spinner:
+                id: citation
+                text: "Select your Citation format"
+                values: ["APA", "MLA", "Other"]
+                size_hint: 1, 0.2
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: 1, 0.1
+                padding: 5, 0, 5, 0
+
+                TextInput:
+                    id: test
+                    text: "Enter your sources (Press enter to separate)"
+
+                Button:
+                    id: clear
+                    text: ">>"
+                    size_hint: 0.2, 1
+                    on_press: root.clear()
+
+            Label:
+                id: test2
+                text: "Responses will Appear Here"
+                color: 0, 0, 0, 1
+                size_hint: 1, 0.8
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+
+        Button:
+            text: "!"
+            size_hint: 0.2, 1
+            on_release: Factory.ResearchPopup().open()
+
+
+
+<LearningPopup@Popup>:
+    auto_dismiss: False
+    size_hint: 0.7, 0.7
+    pos_hint: {'x':0.15, 'y':0.15}
+
+    title: "What is this?"
+    BoxLayout:
+        orientation: "vertical"
+
+        Label:
+            text: "A feature that we wanted to include in the Level Library was the ability for its users to learn valuable skills. It has been reported that rural areas often don’t have the resources and teachers available for people in the country to use. This forces those who come from rural areas to spend excess time and money moving away from their homes to receive an education and sometimes not returning because of better opportunities elsewhere. Giving rural areas these resources allows them to build a space for these teachers and scientists to have a successful life and teach more people from their areas at a better cost to them. Giving this possibility for better education in these rural areas means that there can be a quicker and wider spread of knowledge allowing them to catch up and be on the same page as everyone else."
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+        Button:
+            text: "Close"
+            font_size: 24
+            size_hint: 1, 0.4
+            on_release: root.dismiss()
+
+<LearningCenter>:
+    name: "learning"
+
+    BoxLayout:
+        orientation: "horizontal"
+        padding: 10, 30, 10, 30
+
+        Button:
+            size_hint: 0.2, 1
+            text: "<"
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
+        BoxLayout:
+            orientation: "vertical"
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: 1, 0.1
+                padding: 5, 0, 5, 0
+
+                TextInput:
+                    id: test
+                    text: "Enter your sources (Press enter to separate)"
+
+                Button:
+                    id: clear
+                    text: ">>"
+                    size_hint: 0.2, 1
+                    on_press: root.clear()
+
+            Label:
+                id: test2
+                text: "Responses will Appear Here"
+                color: 0, 0, 0, 1
+                size_hint: 1, 0.2
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+
+            VideoPlayer:
+                id: rawr
+                source: ""
+                size_hint: 1, 0.6
+                state: "play"
+                options: {"eos": 'loop'}
+
+        Button:
+            text: "!"
+            size_hint: 0.2, 1
+            on_release: Factory.LearningPopup().open()
+
+<MoreAbtLL>:
+    name: "mall"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 10, 5, 10, 5
+        Image:
+            source: "E102 Grand Challenge Poster (V1)(1).png"
+
+        Button:
+            text: "<"
+            size_hint: 1, 0.1
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
+
+<AboutUs>:
+    name: "aboutus"
+
+    ScrollView:
+        do_scroll_y: True
+        do_scroll_x: False
+
+        BoxLayout:
+            size_hint_y: None
+            size_hint_x: 1
+            orientation: "vertical"
+            height: "1800"
+            padding: 30
+            Label:
+                size_hint: 1, 0.02
+                text: "Our Team Members"
+                halign: "center"
+                color: 0, 0, 0, 1
+                font_size: 24
+                bold: True
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: 1, 0.015
+                Label:
+                    text: "Zoe Carter"
+                    color: 0, 0, 0, 1
+                Label:
+                    text: "Yesenia Martinez"
+                    color: 0, 0, 0, 1
+                Label:
+                    text: "Tanner Morgan"
+                    color: 0, 0, 0, 1
+                Label:
+                    text: "Shanel White"
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: 1, 0.015
+                Label:
+                    text: "Wake STEM ECHS Senior"
+                    italic: True
+                    color: 0, 0, 0, 1
+                Label:
+                    text:  "Engineering First Year"
+                    italic: True
+                    color: 0, 0, 0, 1
+                Label:
+                    text: "Engineering First Year"
+                    italic: True
+                    color: 0, 0, 0, 1
+                Label:
+                    text: "Wake STEM ECHS Senior"
+                    italic: True
+                    color: 0, 0, 0, 1
+            Image:
+                size_hint: 1, 0.3
+                padding: 30
+                source: "Level Library Logo.png"
+
+            BoxLayout:
+                padding: 0, 30, 0, 0
+                orientation: 'vertical'
+                size_hint: 1, 0.1
+                Image:
+                    source: "e102graphthing.png"
+            BoxLayout:
+                size_hint: 1, 0.015
+                Label:
+                    color: 0, 0, 0, 1
+                    valign: "top"
+                    text: "Countries and territories with the fewest publications in medicine (1996–2010) per capita."
+
+            GridLayout:
+                cols: 1
+                size_hint: 1, 0.0566
+                padding: 0, 0, 0, 30
+                Label:
+                    text: "Our Goal"
+                    underline: True
+                    bold: True
+                    halign: 'center'
+                    valign: 'bottom'
+                    color: 0, 0, 0, 1
+                    size_hint_y: 0.9
+                Label:
+                    text: "We want to focus on researchers in rural communities who do not have access to the resources they need to further their research. We have a focus on health challenges in these rural areas. There’s evidence to show that they don’t have the resources to obtain the knowledge necessary to further themselves in both scientific advancements and healthy living. Our goal is to address the need for rural countries and communities to advance their abilities to research. The intentions of Level Library are to close the gap between rural areas and the rest of the world."
+                    text_size: self.size
+                    halign: 'center'
+                    color: 0, 0, 0, 1
+
+            GridLayout:
+                cols: 1
+                size_hint: 1, 0.0344
+                padding: 0, 0, 0, 30
+                Label:
+                    text: "Engineering the Tools of Scientific Discovery"
+                    underline: True
+                    bold: True
+                    halign: 'center'
+                    valign: 'bottom'
+                    color: 0, 0, 0, 1
+                    size_hint_y: 0.9
+                Label:
+                    text: "Level Library aims to cut down on time and resources spent on scientific research. The technology would allow for education and research opportunities in rural areas."
+                    text_size: self.size
+                    halign: 'center'
+                    color: 0, 0, 0, 1
+
+            Button:
+                text: "Home"
+                size_hint: 1, 0.023
+                on_release:
+                    app.root.current = "opening"
+                    root.manager.transition.direction = "down"
